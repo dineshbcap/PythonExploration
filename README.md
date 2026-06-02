@@ -1,4 +1,4 @@
-# Python: Basic to Advanced — Complete Reference Project
+#Python: Basic to Advanced — Complete Reference Project
 
 [![GitHub](https://img.shields.io/badge/GitHub-dineshbcap%2FPythonExploration-blue?logo=github)](https://github.com/dineshbcap/PythonExploration)
 
