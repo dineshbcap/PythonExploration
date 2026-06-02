@@ -1,7 +1,14 @@
 # Python: Basic to Advanced — Complete Reference Project
 
+[![GitHub](https://img.shields.io/badge/GitHub-dineshbcap%2FPythonExploration-blue?logo=github)](https://github.com/dineshbcap/PythonExploration)
+
 A structured, self-contained Python learning project organized from fundamentals to advanced internals.
 Each file is a standalone, runnable module with inline explanations.
+
+```bash
+git clone https://github.com/dineshbcap/PythonExploration.git
+cd PythonExploration
+```
 
 ---
 
