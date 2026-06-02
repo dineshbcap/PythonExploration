@@ -1,0 +1,12 @@
+# This project uses the Python standard library only.
+# No third-party packages are required.
+#
+# Minimum Python version: 3.9
+# Tested on: 3.9.6
+#
+# To run any file:
+#   python3 <file>
+#
+# If you want a linter / type-checker for development:
+# pyright>=1.1
+# ruff>=0.4
