@@ -177,11 +177,7 @@ print(f"Found i={i}, j={j} where i+j=7")
 # ── 7. match / case  (Python 3.10+) ──────────────────────────────────────────
 
 print("\n--- match/case ---")
-import sys
 
-if sys.version_info >= (3, 10):
-    # match/case is a syntax feature — must be compiled at runtime on 3.9
-    exec("""
 def describe_point(point):
     match point:
         case (0, 0):
@@ -214,17 +210,6 @@ print(classify_number(-5))
 print(classify_number(0))
 print(classify_number(42))
 print(classify_number(3.14))
-""")
-else:
-    print(f"  match/case requires Python 3.10+, current: {sys.version_info[:2]}")
-    print("  Equivalent using if/elif:")
-    def describe_point(point):
-        if point == (0, 0):          return "Origin"
-        elif point[1] == 0:          return f"On x-axis at x={point[0]}"
-        elif point[0] == 0:          return f"On y-axis at y={point[1]}"
-        else:                        return f"Point at {point}"
-    for pt in [(0,0),(3,0),(0,4),(2,5)]:
-        print(f"  {pt} → {describe_point(pt)}")
 
 
 print("\nDone: control_flow")

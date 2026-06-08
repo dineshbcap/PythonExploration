@@ -188,10 +188,7 @@ for test in [("", 25), ("Alice", -5), ("Alice", 30)]:
 # ── 8. except* — Exception Groups (Python 3.11+) ─────────────────────────────
 
 print("\n--- ExceptionGroup (Python 3.11+) ---")
-import sys
-if sys.version_info >= (3, 11):
-    # except* and ExceptionGroup are syntax/runtime features of 3.11+
-    exec("""
+
 try:
     raise ExceptionGroup("multiple errors", [
         ValueError("bad value"),
@@ -202,12 +199,6 @@ except* ValueError as eg:
     print(f"  ValueErrors: {[str(e) for e in eg.exceptions]}")
 except* TypeError as eg:
     print(f"  TypeErrors: {[str(e) for e in eg.exceptions]}")
-""")
-else:
-    print(f"  Python {sys.version_info[:2]} — ExceptionGroup/except* is Python 3.11+")
-    print("  Concept: ExceptionGroup bundles multiple exceptions raised concurrently")
-    print("  (e.g. from asyncio.gather or TaskGroup when several tasks fail)")
-    print("  except* matches and splits the group by exception type")
 
 
 # ── 9. finally and Context Managers ──────────────────────────────────────────

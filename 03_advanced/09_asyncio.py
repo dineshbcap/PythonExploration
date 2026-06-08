@@ -134,16 +134,12 @@ async def demo_timeout():
     except asyncio.TimeoutError:
         print("  Timed out!")
 
-    # Python 3.11+: asyncio.timeout context manager
-    import sys
-    if sys.version_info >= (3, 11):
-        try:
-            async with asyncio.timeout(0.05):
-                await slow_op()
-        except TimeoutError:
-            print("  Timed out (3.11+ style)!")
-    else:
-        print(f"  asyncio.timeout() needs 3.11+, got {sys.version_info[:2]}")
+    # asyncio.timeout context manager (Python 3.11+)
+    try:
+        async with asyncio.timeout(0.05):
+            await slow_op()
+    except TimeoutError:
+        print("  Timed out (3.11+ style)!")
 
 asyncio.run(demo_timeout())
 

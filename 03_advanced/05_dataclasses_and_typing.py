@@ -7,11 +7,7 @@ and the typing module (generics, TypeVar, Protocol, Literal, TypedDict, etc.)
 Run: python 03_advanced/05_dataclasses_and_typing.py
 """
 
-import sys
-import sys as _sys
-from dataclasses import dataclass, field, asdict, astuple, replace
-if _sys.version_info >= (3, 10):
-    from dataclasses import KW_ONLY  # noqa: F401 — available 3.10+
+from dataclasses import dataclass, field, asdict, astuple, replace, KW_ONLY  # noqa: F401
 from typing import (
     Any, ClassVar, Final, Generic, Literal, Optional, Protocol,
     Sequence, TypeVar, Union, get_type_hints, overload, runtime_checkable
@@ -179,15 +175,14 @@ print(e)     # original unchanged
 # ── 8. slots=True (Python 3.10+) ──────────────────────────────────────────────
 
 print("\n--- slots=True ---")
-if sys.version_info >= (3, 10):
-    @dataclass(slots=True)
-    class FastPoint:
-        x: float
-        y: float
-    fp = FastPoint(1.0, 2.0)
-    print(fp)
-else:
-    print(f"  slots=True requires Python 3.10+, got {sys.version_info[:2]}")
+
+@dataclass(slots=True)
+class FastPoint:
+    x: float
+    y: float
+
+fp = FastPoint(1.0, 2.0)
+print(fp)
 
 
 # ── 9. ClassVar and InitVar ───────────────────────────────────────────────────
@@ -316,28 +311,16 @@ class Movie(TypedDict):
 m: Movie = {"title": "Inception", "year": 2010, "rating": 8.8}
 print(m["title"])
 
-# TypedDict with optional keys (Python 3.11+ style):
-if sys.version_info >= (3, 11):
-    from typing import NotRequired
+# TypedDict with optional keys via NotRequired (Python 3.11+):
+from typing import NotRequired
 
-    class Config(TypedDict):
-        host: str
-        port: int
-        debug: NotRequired[bool]   # optional key
+class Settings(TypedDict):
+    host: str
+    port: int
+    debug: NotRequired[bool]   # optional key
 
-    cfg: Config = {"host": "localhost", "port": 8080}
-    print(f"  Config: {cfg}")
-else:
-    print(f"  NotRequired requires Python 3.11+, current: {sys.version_info[:2]}")
-    print("  Use total=False on TypedDict for all-optional keys:")
-
-    class Config(TypedDict, total=False):   # all keys optional
-        host: str
-        port: int
-        debug: bool
-
-    cfg: Config = {"host": "localhost"}
-    print(f"  Config (total=False): {cfg}")
+settings: Settings = {"host": "localhost", "port": 8080}
+print(f"  Settings: {settings}")
 
 
 print("\nDone: dataclasses_and_typing")
